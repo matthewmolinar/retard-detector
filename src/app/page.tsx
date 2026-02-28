@@ -27,6 +27,11 @@ export default function Home() {
     return match ? `@${match[1].replace("@", "")}` : "this tweet";
   }
 
+  function getTweetId(tweetUrl: string) {
+    const match = tweetUrl.match(/status\/(\d+)/);
+    return match ? match[1] : null;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!url.trim()) return;
@@ -81,8 +86,13 @@ export default function Home() {
   function shareOnTwitter() {
     if (number === null) return;
     const handle = getHandle(url);
-    const text = `${handle} scored ${number}% on the Retard Detector 💀\n\nTest any tweet:`;
-    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent("https://retard-detector.vercel.app")}`;
+    const tweetId = getTweetId(url);
+    const resultUrl = `https://retard-detector.vercel.app/r/${encodeURIComponent(handle)}/${number}`;
+    const text = `You scored ${number}% on the Retard Detector 💀\n\n${resultUrl}`;
+    let shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    if (tweetId) {
+      shareUrl += `&in_reply_to=${tweetId}`;
+    }
     window.open(shareUrl, "_blank");
   }
 
@@ -186,7 +196,7 @@ export default function Home() {
               onClick={shareOnTwitter}
               className="w-full rounded-xl bg-white px-6 py-4 text-lg font-bold text-black transition-all hover:bg-zinc-200 active:scale-[0.98]"
             >
-              Share on 𝕏
+              Reply with Score on 𝕏
             </button>
 
             {/* Try another */}
