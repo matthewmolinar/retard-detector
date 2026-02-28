@@ -86,13 +86,9 @@ export default function Home() {
   function shareOnTwitter() {
     if (number === null) return;
     const handle = getHandle(url);
-    const tweetId = getTweetId(url);
     const resultUrl = `https://retard-detector.vercel.app/r/${encodeURIComponent(handle)}/${number}`;
-    const text = `You scored ${number}% on the Retard Detector 💀\n\n${resultUrl}`;
-    let shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-    if (tweetId) {
-      shareUrl += `&in_reply_to=${tweetId}`;
-    }
+    const text = `${handle} scored ${number}% on the Retard Detector 💀`;
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(resultUrl)}`;
     window.open(shareUrl, "_blank");
   }
 
