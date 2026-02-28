@@ -205,6 +205,11 @@ export default function Home() {
           </div>
         )}
       </main>
+      <footer className="fixed bottom-4 text-center w-full">
+        <a href="https://molinarcode.com" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-700 hover:text-zinc-500 transition-colors">
+          molinarcode.com
+        </a>
+      </footer>
     </div>
   );
 }
