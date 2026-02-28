@@ -9,5 +9,5 @@ export async function POST(req: NextRequest) {
 
   const number = Math.floor(Math.random() * 100) + 1;
 
-  return NextResponse.json({ number, result: `${number} ai-generated` });
+  return NextResponse.json({ number });
 }

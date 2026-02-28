@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [text, setText] = useState("");
-  const [result, setResult] = useState<string | null>(null);
+  const [number, setNumber] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -18,7 +18,7 @@ export default function Home() {
       body: JSON.stringify({ text }),
     });
     const data = await res.json();
-    setResult(data.result);
+    setNumber(data.number);
     setLoading(false);
   }
 
@@ -42,9 +42,28 @@ export default function Home() {
             {loading ? "Analyzing..." : "Detect"}
           </button>
         </form>
-        {result && (
-          <div className="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-6 text-center">
-            <p className="text-3xl font-bold text-white">{result}</p>
+        {number !== null && (
+          <div className="w-full rounded-xl bg-zinc-800/80 p-8">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-zinc-400">
+              Fully Retard Written
+            </p>
+            <div className="flex items-start justify-between">
+              <p className="text-8xl font-black text-white leading-none">
+                {number}
+                <span className="text-3xl text-zinc-400">%</span>
+              </p>
+              <div className="mt-2 rounded-lg bg-zinc-700/60 px-4 py-2 flex items-center gap-3">
+                <span className="inline-block h-3 w-3 rounded-sm bg-zinc-400" />
+                <span className="text-sm text-zinc-400">Retard</span>
+                <span className="text-sm text-zinc-400">{number} %</span>
+              </div>
+            </div>
+            <div className="mt-6 h-3 w-full overflow-hidden rounded-full bg-zinc-700">
+              <div
+                className="h-full rounded-full bg-zinc-300 transition-all duration-700"
+                style={{ width: `${number}%` }}
+              />
+            </div>
           </div>
         )}
       </main>
