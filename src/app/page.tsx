@@ -25,12 +25,12 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-black">
       <main className="flex w-full max-w-md flex-col items-center gap-8 px-6">
-        <h1 className="text-4xl font-bold text-white">AI Number Gen</h1>
+        <h1 className="text-4xl font-bold text-white">Retard Detector</h1>
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Enter any text..."
+            placeholder="Paste text to analyze..."
             rows={4}
             className="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-4 text-white placeholder-zinc-500 focus:border-zinc-500 focus:outline-none"
           />
@@ -39,7 +39,7 @@ export default function Home() {
             disabled={loading || !text.trim()}
             className="rounded-lg bg-white px-6 py-3 font-semibold text-black transition-colors hover:bg-zinc-200 disabled:opacity-50"
           >
-            {loading ? "Generating..." : "Generate"}
+            {loading ? "Analyzing..." : "Detect"}
           </button>
         </form>
         {result && (
