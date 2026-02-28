@@ -13,8 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Retard Detector",
-  description: "AI-powered retard detection",
+  title: "Retard Detector — AI Tweet Analysis",
+  description: "Paste any tweet. Our AI analyzes it instantly. Share your score.",
+  openGraph: {
+    title: "Retard Detector",
+    description: "Paste any tweet. Our AI analyzes it instantly.",
+    siteName: "Retard Detector",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Retard Detector",
+    description: "Paste any tweet. Our AI analyzes it instantly. Share your score.",
+  },
 };
 
 export default function RootLayout({
